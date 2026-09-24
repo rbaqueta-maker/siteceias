@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colégio Educar & Futuro | Formando Líderes do Amanhã</title>
+
+    <!-- Google Fonts: Poppins & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0F2C59',
+                            blue: '#1D4ED8',
+                            lightBlue: '#EFF6FF',
+                            gold: '#F59E0B',
+                            goldHover: '#D97706',
+                            dark: '#1E293B',
+                            surface: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0F2C59 0%, #1D4ED8 60%, #1E40AF 100%);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        }
+
+        .card-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(15, 44, 89, 0.1), 0 10px 10px -5px rgba(15, 44, 89, 0.04);
+        }
+
+        /* Toast animation */
+        @keyframes slideIn {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        .animate-fade-out {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-brand-surface text-brand-dark font-sans antialiased selection:bg-brand-gold selection:text-white">
+
+    <!-- HEADER & NAVIGATION -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="block font-heading font-extrabold text-xl leading-tight text-brand-navy">
+                            Colégio <span class="text-brand-gold">Educar</span>
+                        </span>
+                        <span class="block text-xs font-medium tracking-widest text-slate-500 uppercase">& Futuro</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-slate-700 hover:text-brand-blue font-medium transition-colors text-sm py-2 border-b-2 border-transparent hover:border-brand-blue">Início</a>
+                    <a href="#sobre" class="text-slate-700 hover:text-brand-blue font-medium transition-colors text-sm py-2 border-b-2 border-transparent hover:border-brand-blue">Sobre Nós</a>
+                    <a href="#cursos" class="text-slate-700 hover:text-brand-blue font-medium transition-colors text-sm py-2 border-b-2 border-transparent hover:border-brand-blue">Cursos</a>
+                    <a href="#noticias" class="text-slate-700 hover:text-brand-blue font-medium transition-colors text-sm py-2 border-b-2 border-transparent hover:border-brand-blue">Notícias & Eventos</a>
+                    <a href="#contato" class="text-slate-700 hover:text-brand-blue font-medium transition-colors text-sm py-2 border-b-2 border-transparent hover:border-brand-blue">Contato</a>
+                </nav>
+
+                <!-- Action Button Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('aluno-modal')" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full font-semibold text-sm text-white bg-brand-navy hover:bg-brand-blue shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-user-gear mr-2 text-brand-gold"></i>
+                        Área do Aluno
+                    </button>
+                </div>
+
+                <!-- Hamburger Button Mobile -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-brand-navy p-2 rounded-lg focus:outline-none" aria-label="Abrir Menu">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#inicio" class="mobile-nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Início</a>
+            <a href="#sobre" class="mobile-nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Sobre Nós</a>
+            <a href="#cursos" class="mobile-nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Cursos</a>
+            <a href="#noticias" class="mobile-nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Notícias & Eventos</a>
+            <a href="#contato" class="mobile-nav-link block px-3 py-2 rounded-md font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Contato</a>
+            <div class="pt-2">
+                <button onclick="openModal('aluno-modal')" class="w-full text-center px-5 py-3 rounded-xl font-semibold text-white bg-brand-navy hover:bg-brand-blue shadow-md">
+                    <i class="fa-solid fa-user-gear mr-2 text-brand-gold"></i>
+                    Área do Aluno
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <!-- HERO BANNER SECTION -->
+        <section id="inicio" class="relative hero-gradient text-white overflow-hidden py-20 lg:py-28">
+            <!-- Background Decorative Circles -->
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-amber-400/10 blur-2xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-gold text-xs font-semibold tracking-wide uppercase">
+                            <i class="fa-solid fa-award"></i>
+                            Matrículas Abertas para 2027
+                        </div>
+
+                        <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
+                            Educação Humanizada para Formar <span class="text-brand-gold">Líderes do Futuro</span>
+                        </h1>
+
+                        <p class="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            No Colégio Educar & Futuro, aliamos inovação tecnológica, aprendizado bilíngue e desenvolvimento socioemocional para preparar seu filho para os desafios do mundo globalizado.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-slate-900 gold-gradient hover:opacity-95 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-center">
+                                <i class="fa-solid fa-calendar-check mr-2"></i>
+                                Agende uma Visita
+                            </a>
+                            <a href="#cursos" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-md transition-all text-center">
+                                Conheça os Cursos
+                                <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual Graphic -->
+                    <div class="lg:col-span-5 relative flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Floating Badge -->
+                            <div class="absolute -top-6 -left-6 z-20 bg-white text-slate-800 p-4 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-100 hidden sm:flex">
+                                <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 font-medium">Nota Máxima</p>
+                                    <p class="font-bold text-slate-900">Acreditação Escolar</p>
+                                </div>
+                            </div>
+
+                            <!-- Main Feature Image Card -->
+                            <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 relative bg-slate-800 aspect-[4/3]">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" 
+                                     alt="Estudantes interagindo na sala de aula" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/800x600/0F2C59/FFFFFF?text=Colegio+Educar+%26+Futuro';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 right-6 text-white">
+                                    <p class="text-xs uppercase font-semibold text-brand-gold tracking-wider">Metodologia Ativa</p>
+                                    <p class="font-bold text-lg">Ambientes de Aprendizagem Maker & Tecnológicos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- STATS BAR -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/15">
+                    <div class="text-center p-2">
+                        <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-brand-gold">25+</span>
+                        <span class="text-xs sm:text-sm text-slate-200">Anos de Tradição</span>
+                    </div>
+                    <div class="text-center p-2 border-l border-white/10">
+                        <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-brand-gold">100%</span>
+                        <span class="text-xs sm:text-sm text-slate-200">Professores Especialistas</span>
+                    </div>
+                    <div class="text-center p-2 border-l border-white/10">
+                        <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-brand-gold">98%</span>
+                        <span class="text-xs sm:text-sm text-slate-200">Aprovação nos Vestibulares</span>
+                    </div>
+                    <div class="text-center p-2 border-l border-white/10">
+                        <span class="block font-heading font-extrabold text-2xl sm:text-3xl text-brand-gold">15+</span>
+                        <span class="text-xs sm:text-sm text-slate-200">Atividades Extracurriculares</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SOBRE NÓS SECTION -->
+        <section id="sobre" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Images -->
+                    <div class="lg:col-span-6 relative">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Professora com alunos" 
+                                 class="rounded-2xl shadow-md h-64 w-full object-cover"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x800/1D4ED8/FFFFFF?text=Educacao';">
+                            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Laboratório de tecnologia" 
+                                 class="rounded-2xl shadow-md h-64 w-full object-cover mt-8"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x800/F59E0B/FFFFFF?text=Inovacao';">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-brand-lightBlue p-6 rounded-2xl border border-blue-100 max-w-xs hidden sm:block shadow-lg">
+                            <p class="text-brand-navy font-bold text-sm">"Nossa missão é acolher cada aluno e potencializar seus talentos para a vida."</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Content -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="text-brand-blue font-semibold text-xs uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">Nossa História & Missão</span>
+                            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3">
+                                Tradição em Educar com Olhar no Futuro
+                            </h2>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed">
+                            Fundado com o propósito de oferecer uma educação transformadora, o <strong>Colégio Educar & Futuro</strong> combina excelência acadêmica rigorosa com o acolhimento socioemocional. Desenvolvemos o pensamento crítico, o protagonismo juvenil e a cidadania global em todas as fases do aprendizado.
+                        </p>
+
+                        <!-- Values Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 text-brand-blue flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Inovação</h4>
+                                    <p class="text-xs text-slate-500">Uso inteligente de tecnologia no aprendizado.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Empatia</h4>
+                                    <p class="text-xs text-slate-500">Desenvolvimento socioemocional contínuo.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Excelência</h4>
+                                    <p class="text-xs text-slate-500">Altos índices de aprovação nas melhores universidades.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center font-bold shrink-0">
+                                    <i class="fa-solid fa-earth-americas"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Bilinguismo</h4>
+                                    <p class="text-xs text-slate-500">Imersão em língua inglesa desde os primeiros anos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CURSOS & NÍVEIS DE ENSINO SECTION -->
+        <section id="cursos" class="py-20 bg-brand-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-blue font-semibold text-xs uppercase tracking-wider bg-blue-100/60 px-3 py-1 rounded-full">Proposta Pedagógica</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3">
+                        Níveis de Ensino Desenvolvidos para Cada Etapa
+                    </h2>
+                    <p class="text-slate-600 mt-4 text-base">
+                        Oferecemos uma trajetória educacional completa, respeitando o ritmo de desenvolvimento de cada faixa etária.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1: Educação Infantil -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm card-hover-effect flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                                    <i class="fa-solid fa-shapes"></i>
+                                </div>
+                                <span class="bg-amber-50 text-amber-700 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">2 a 5 Anos</span>
+                            </div>
+
+                            <h3 class="font-heading font-bold text-2xl text-brand-navy mb-3">Educação Infantil</h3>
+                            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                                Estímulo à curiosidade natural, desenvolvimento da linguagem, coordenação motora e socialização através do brincar heurístico e estimulante.
+                            </p>
+
+                            <ul class="space-y-2 mb-8 text-xs text-slate-700">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Atividades psicomotoras & lúdicas
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Iniciação bilíngue diária
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Horta escolar e consciência ambiental
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openCourseDetails('infantil')" class="w-full py-3 rounded-xl font-semibold text-sm text-brand-navy bg-slate-100 hover:bg-brand-navy hover:text-white transition-colors flex items-center justify-center gap-2">
+                            Saiba mais
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 2: Ensino Fundamental -->
+                    <div class="bg-white rounded-3xl p-8 border-2 border-brand-blue/20 shadow-md card-hover-effect flex flex-col justify-between relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-blue text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full tracking-wider">
+                            Mais Procurado
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-blue-100 text-brand-blue flex items-center justify-center text-2xl font-bold">
+                                    <i class="fa-solid fa-book-open-reader"></i>
+                                </div>
+                                <span class="bg-blue-50 text-brand-blue text-xs font-bold px-3 py-1 rounded-full border border-blue-200">6 a 14 Anos</span>
+                            </div>
+
+                            <h3 class="font-heading font-bold text-2xl text-brand-navy mb-3">Ensino Fundamental</h3>
+                            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                                Consolidação do raciocínio lógico, leitura crítica, iniciação científica e cultura maker em ambientes colaborativos.
+                            </p>
+
+                            <ul class="space-y-2 mb-8 text-xs text-slate-700">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Laboratório de Robótica & Programação
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Programa de Educação Socioemocional
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Olimpíadas de Conhecimento
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openCourseDetails('fundamental')" class="w-full py-3 rounded-xl font-semibold text-sm text-white bg-brand-blue hover:bg-brand-navy transition-colors flex items-center justify-center gap-2 shadow-md">
+                            Saiba mais
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 3: Ensino Médio -->
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm card-hover-effect flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </div>
+                                <span class="bg-purple-50 text-purple-700 text-xs font-bold px-3 py-1 rounded-full border border-purple-200">15 a 17 Anos</span>
+                            </div>
+
+                            <h3 class="font-heading font-bold text-2xl text-brand-navy mb-3">Ensino Médio</h3>
+                            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                                Preparação intensiva para os melhores vestibulares e ENEM, aliada à orientação vocacional e projeto de vida individualizado.
+                            </p>
+
+                            <ul class="space-y-2 mb-8 text-xs text-slate-700">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Simulados periódicos com TRI
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Itinerários Formativos Flexíveis
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-emerald-500"></i>
+                                    Mentoria e Projeto de Vida
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openCourseDetails('medio')" class="w-full py-3 rounded-xl font-semibold text-sm text-brand-navy bg-slate-100 hover:bg-brand-navy hover:text-white transition-colors flex items-center justify-center gap-2">
+                            Saiba mais
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NOTÍCIAS E EVENTOS SECTION -->
+        <section id="noticias" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-brand-blue font-semibold text-xs uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">Acontece no Educar</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3">
+                            Notícias & Próximos Eventos
+                        </h2>
+                    </div>
+                    <p class="text-slate-500 text-sm mt-2 md:mt-0">Fique por dentro das atividades de nossa comunidade escolar.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- News Item 1 -->
+                    <article class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm group hover:shadow-md transition-shadow">
+                        <div class="h-48 overflow-hidden relative">
+                            <span class="absolute top-4 left-4 z-10 bg-brand-navy text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">Evento</span>
+                            <img src="https://images.unsplash.com/photo-1564069114553-742289668641?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Feira de Ciências" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/0F2C59/FFFFFF?text=Feira+de+Ciencias';">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs mb-2">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>15 de Outubro, 2026</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
+                                Feira Anual de Ciências & Inovação Tecnológica
+                            </h3>
+                            <p class="text-slate-600 text-xs line-clamp-2">
+                                Alunos do Ensino Fundamental e Médio apresentarão projetos de sustentabilidade e automação.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- News Item 2 -->
+                    <article class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm group hover:shadow-md transition-shadow">
+                        <div class="h-48 overflow-hidden relative">
+                            <span class="absolute top-4 left-4 z-10 bg-brand-gold text-slate-900 text-[10px] font-bold uppercase px-3 py-1 rounded-full">Esportes</span>
+                            <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Torneio Esportivo" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/F59E0B/FFFFFF?text=Torneio+Esportivo';">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs mb-2">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>22 de Novembro, 2026</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
+                                Torneio Interescolar de Futsal e Basquete
+                            </h3>
+                            <p class="text-slate-600 text-xs line-clamp-2">
+                                Venha torcer por nossos atletas nas finais do campeonato regional da juventude.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- News Item 3 -->
+                    <article class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm group hover:shadow-md transition-shadow">
+                        <div class="h-48 overflow-hidden relative">
+                            <span class="absolute top-4 left-4 z-10 bg-emerald-600 text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">Institucional</span>
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop" 
+                                 alt="Reunião de Pais" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/10B981/FFFFFF?text=Reuniao+de+Pais';">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 text-slate-400 text-xs mb-2">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>05 de Dezembro, 2026</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
+                                Encontro Pedagógico & Reunião de Pais e Mestres
+                            </h3>
+                            <p class="text-slate-600 text-xs line-clamp-2">
+                                Momento dedicado ao alinhamento do desempenho escolar do 4º bimestre.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTATO E LOCALIZAÇÃO SECTION -->
+        <section id="contato" class="py-20 bg-brand-surface border-t border-slate-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Contact Information Side -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span class="text-brand-blue font-semibold text-xs uppercase tracking-wider bg-blue-100/60 px-3 py-1 rounded-full">Fale Conosco</span>
+                            <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-navy mt-3">
+                                Estamos Prontos para Atender Sua Família
+                            </h2>
+                            <p class="text-slate-600 text-sm mt-3">
+                                Agende uma visita guiada ou tire suas dúvidas sobre o processo de matrícula.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-white text-brand-blue shadow-md flex items-center justify-center text-xl shrink-0 border border-slate-100">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Endereço</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Av. das Academias, 1000 - Bairro Jardim do Saber</p>
+                                    <p class="text-xs text-slate-500">São Paulo - SP, CEP 01234-567</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-white text-brand-blue shadow-md flex items-center justify-center text-xl shrink-0 border border-slate-100">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Telefone e WhatsApp</h4>
+                                    <p class="text-xs text-slate-600 mt-1">(11) 4002-8922 / (11) 98765-4321</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-white text-brand-blue shadow-md flex items-center justify-center text-xl shrink-0 border border-slate-100">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">E-mail Institucional</h4>
+                                    <p class="text-xs text-slate-600 mt-1">atendimento@colegioeducarefuturo.com.br</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-2xl bg-white text-brand-blue shadow-md flex items-center justify-center text-xl shrink-0 border border-slate-100">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-brand-navy text-sm">Horário de Atendimento</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Segunda a Sexta: 07h às 18h30</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Simulated Interactive Map Card -->
+                        <div class="bg-slate-200 rounded-2xl p-4 h-40 flex flex-col justify-end relative overflow-hidden shadow-inner border border-slate-300">
+                            <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#1d4ed8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            <div class="relative z-10 bg-white/95 p-3 rounded-xl shadow-sm border border-slate-100 flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-xs text-brand-navy">Campus Principal Educar & Futuro</p>
+                                    <p class="text-[10px] text-slate-500">Estac. gratuito no local</p>
+                                </div>
+                                <a href="https://maps.google.com" target="_blank" class="px-3 py-1.5 rounded-lg bg-brand-blue text-white text-xs font-bold hover:bg-brand-navy transition-colors">
+                                    Como Chegar
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Contact Form Card -->
+                    <div class="lg:col-span-7">
+                        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-100">
+                            <h3 class="font-heading font-bold text-2xl text-brand-navy mb-2">Envie uma Mensagem</h3>
+                            <p class="text-xs text-slate-500 mb-8">Preencha o formulário abaixo e nossa equipe pedagógica entrará em contato em até 24h.</p>
+
+                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="name" class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo *</label>
+                                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800" placeholder="Ex: Maria Silva">
+                                    </div>
+
+                                    <div>
+                                        <label for="email" class="block text-xs font-semibold text-slate-700 mb-1">E-mail *</label>
+                                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800" placeholder="maria@email.com">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                    <div>
+                                        <label for="phone" class="block text-xs font-semibold text-slate-700 mb-1">Telefone / WhatsApp *</label>
+                                        <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800" placeholder="(11) 99999-9999">
+                                    </div>
+
+                                    <div>
+                                        <label for="interest" class="block text-xs font-semibold text-slate-700 mb-1">Nível de Interesse</label>
+                                        <select id="interest" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800">
+                                            <option value="infantil">Educação Infantil</option>
+                                            <option value="fundamental">Ensino Fundamental</option>
+                                            <option value="medio">Ensino Médio</option>
+                                            <option value="outro">Outras Informações</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-xs font-semibold text-slate-700 mb-1">Sua Mensagem *</label>
+                                    <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800" placeholder="Como podemos ajudar sua família?"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 rounded-xl font-bold text-white bg-brand-blue hover:bg-brand-navy shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                                    Enviar Solicitação
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: ÁREA DO ALUNO LOGIN -->
+    <div id="aluno-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative border border-slate-100 transform scale-95 transition-transform duration-300">
+            <!-- Close Button -->
+            <button onclick="closeModal('aluno-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-blue-100 text-brand-blue flex items-center justify-center text-2xl mx-auto mb-3">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="font-heading font-bold text-2xl text-brand-navy">Portal do Aluno & Família</h3>
+                <p class="text-xs text-slate-500 mt-1">Acesse notas, frequência, boletim e avisos escolares.</p>
+            </div>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Matrícula (RA) ou E-mail</label>
+                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 text-sm" placeholder="Ex: 202610098">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Senha</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 text-sm" placeholder="••••••••">
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center gap-2 text-slate-600 cursor-pointer">
+                        <input type="checkbox" class="rounded border-slate-300 text-brand-blue focus:ring-brand-blue">
+                        Lembrar-me
+                    </label>
+                    <a href="#" onclick="showToast('A solicitação de redefinição de senha foi enviada ao seu e-mail cadastrado.', 'info'); return false;" class="text-brand-blue font-semibold hover:underline">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-white bg-brand-navy hover:bg-brand-blue transition-colors shadow-md mt-2">
+                    Entrar no Portal
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: DETALHES DO CURSO -->
+    <div id="course-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full mx-4 shadow-2xl relative border border-slate-100 transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeModal('course-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 w-8 h-8 rounded-full flex items-center justify-center bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="course-modal-content">
+                <!-- Dynamically Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER FOR NOTIFICATIONS -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-navy text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl leading-tight">
+                            Colégio <span class="text-brand-gold">Educar</span> & Futuro
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-sm">
+                        Excelência no ensino, acolhimento socioemocional e formação integral de alunos prontos para vencer no futuro.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-gold hover:text-slate-900 transition-colors flex items-center justify-center text-sm" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-gold hover:text-slate-900 transition-colors flex items-center justify-center text-sm" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-gold hover:text-slate-900 transition-colors flex items-center justify-center text-sm" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-gold hover:text-slate-900 transition-colors flex items-center justify-center text-sm" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="lg:col-span-2 space-y-3">
+                    <h4 class="font-bold text-sm text-brand-gold uppercase tracking-wider">Navegação</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Cursos</a></li>
+                        <li><a href="#noticias" class="hover:text-white transition-colors">Notícias</a></li>
+                        <li><a href="#contato" class="hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Educational Levels -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-bold text-sm text-brand-gold uppercase tracking-wider">Níveis de Ensino</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Educação Infantil (2 a 5 anos)</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Ensino Fundamental I e II</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Ensino Médio & Pré-Vestibular</a></li>
+                        <li><a href="#cursos" class="hover:text-white transition-colors">Atividades Extracurriculares</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-bold text-sm text-brand-gold uppercase tracking-wider">Boletim Informativo</h4>
+                    <p class="text-xs text-slate-300">Receba notícias pedagógicas e novidades do colégio no seu e-mail.</p>
+                    <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+                        <input type="email" required placeholder="Seu melhor e-mail" class="w-full px-3 py-2.5 rounded-lg bg-white/10 border border-white/20 text-xs text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-gold">
+                        <button type="submit" class="w-full py-2.5 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-slate-900 font-bold text-xs transition-colors">
+                            Inscrever-se
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>&copy; 2026 Colégio Educar & Futuro. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-200 transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-slate-200 transition-colors">Termos de Uso</a>
+                    <a href="#" class="hover:text-slate-200 transition-colors">Portal de Transparência</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FUNCTIONALITY -->
+    <script>
+        // Course Modal Data Dictionary
+        const coursesData = {
+            infantil: {
+                title: "Educação Infantil",
+                age: "Faixa Etária: 2 a 5 anos",
+                badge: "Aprendizado Lúdico & Socioemocional",
+                icon: "fa-shapes",
+                color: "amber",
+                description: "Na Educação Infantil, a criança é estimulada a explorar o mundo ao seu redor através do brincar estruturado, desenvolvendo capacidades motoras, afetivas e cognitivas.",
+                highlights: [
+                    "Ambientes seguros, coloridos e projetados para exploração autónoma.",
+                    "Programa bilíngue com música, contação de histórias e jogos digitais interativos.",
+                    "Acompanhamento nutricional e horta pedagógica no próprio campus.",
+                    "Desenvolvimento contínuo de habilidades socioemocionais (partilha, empatia e autonomia)."
+                ]
+            },
+            fundamental: {
+                title: "Ensino Fundamental (I e II)",
+                age: "Faixa Etária: 6 a 14 anos",
+                badge: "Pensamento Crítico & Cultura Maker",
+                icon: "fa-book-open-reader",
+                color: "blue",
+                description: "No Ensino Fundamental, ampliamos a autonomia de estudos, estimulamos o pensamento científico e integramos tecnologias para resolver problemas reais da sociedade.",
+                highlights: [
+                    "Aulas de Robótica, Programação e Cultura Maker integradas ao currículo.",
+                    "Olimpíadas Nacionais de Matemática, Física e Língua Portuguesa.",
+                    "Programa de Apoio Pedagógico e Tutorias de Estudo Personalizadas.",
+                    "Projetos interdisciplinares de sustentabilidade e empreendedorismo ético."
+                ]
+            },
+            medio: {
+                title: "Ensino Médio & Pré-Vestibular",
+                age: "Faixa Etária: 15 a 17 anos",
+                badge: "Projeto de Vida & Alta Performance",
+                icon: "fa-user-graduate",
+                color: "purple",
+                description: "Preparação completa para o ENEM e vestibulares mais concorridos do Brasil, sem perder o foco na saúde mental e no planejamento do futuro profissional.",
+                highlights: [
+                    "Simulados periódicos inéditos no formato TRI (Teoria de Resposta ao Item).",
+                    "Orientação Vocacional, Mentoria de Carreira e Visitas às Universidades.",
+                    "Oficinas semanais de Redação Nota 1000 com correção personalizada.",
+                    "Itinerários formativos flexíveis em Ciências da Natureza e Exatas."
+                ]
+            }
+        };
+
+        // Mobile Menu Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+
+        // Modal Handlers
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.firstElementChild.classList.remove('scale-100');
+                modal.firstElementChild.classList.add('scale-95');
+            }
+        }
+
+        // Open Dynamic Course Detail Modal
+        function openCourseDetails(courseKey) {
+            const data = coursesData[courseKey];
+            if (!data) return;
+
+            const container = document.getElementById('course-modal-content');
+            container.innerHTML = `
+                <div class="text-left">
+                    <span class="inline-block px-3 py-1 bg-slate-100 font-semibold text-xs rounded-full text-slate-700 mb-2">${data.age}</span>
+                    <h3 class="font-heading font-extrabold text-2xl text-brand-navy mb-1">${data.title}</h3>
+                    <p class="text-xs font-semibold text-brand-blue mb-4">${data.badge}</p>
+                    
+                    <p class="text-sm text-slate-600 mb-6 leading-relaxed">${data.description}</p>
+                    
+                    <h4 class="font-bold text-sm text-brand-navy mb-3">Destaques da Proposta Pedagógica:</h4>
+                    <ul class="space-y-2.5 mb-8">
+                        ${data.highlights.map(item => `
+                            <li class="flex items-start gap-2.5 text-xs text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5"></i>
+                                <span>${item}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+
+                    <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
+                        <a href="#contato" onclick="closeModal('course-modal')" class="w-full py-3 rounded-xl font-bold text-center text-white bg-brand-blue hover:bg-brand-navy text-sm transition-colors shadow-sm">
+                            Solicitar Grade Curricular Completa
+                        </a>
+                        <button onclick="closeModal('course-modal')" class="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 text-sm transition-colors">
+                            Fechar
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            openModal('course-modal');
+        }
+
+        // Toast Notification Display Helper
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const isSuccess = type === 'success';
+            const bgColor = isSuccess ? 'bg-emerald-600' : 'bg-brand-blue';
+            const icon = isSuccess ? 'fa-circle-check' : 'fa-circle-info';
+
+            toast.className = `${bgColor} text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-sm pointer-events-auto animate-slide-in max-w-md`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('animate-fade-out');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Form Submit Handler for Contact
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showToast('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+            event.target.reset();
+        }
+
+        // Form Submit Handler for Portal Login
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            closeModal('aluno-modal');
+            showToast('Login efetuado com sucesso! Redirecionando para o portal...', 'info');
+            event.target.reset();
+        }
+
+        // Newsletter Submit Handler
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            showToast('Obrigado! Seu e-mail foi cadastrado no boletim escolar.', 'success');
+            event.target.reset();
+        }
+
+        // Close Modal when clicking background overlay
+        window.onclick = function(event) {
+            const alunoModal = document.getElementById('aluno-modal');
+            const courseModal = document.getElementById('course-modal');
+            if (event.target === alunoModal) closeModal('aluno-modal');
+            if (event.target === courseModal) closeModal('course-modal');
+        };
+    </script>
+</body>
+</html>
